@@ -1,9 +1,12 @@
 const readline = require('readline');
 const tickers = require('./tickers');
+
 let count = 0, columnwidth = 20, rows = 30;
 let startTime = Date.now();
 let randchars = ['*','%','$','&','@','!','^','~','+','?','/','|','<','>'];
+
 console.clear();
+
 function drawScreen() {
   for (i = 0; i < tickers.length; i++) {
     let k = Math.floor(i / rows);
@@ -11,10 +14,15 @@ function drawScreen() {
     let dashes = "-".repeat(columnwidth - tickers[i].length)
     process.stdout.write(`\x1b[33m${tickers[i]}${dashes}`);
   }};
+
 drawScreen();
+
 readline.cursorTo(process.stdout,0,40);
+
 console.log(" ");
-setInterval(grab, 500);
+
+setInterval(grab, 2000);
+
 async function grab() {
   for (const singleticker of tickers) {
     const res1 = await fetch(`https://generic709.herokuapp.com/stockc/${singleticker}`)
@@ -36,4 +44,5 @@ async function grab() {
     let xposition = 7 + Math.floor(tickers.indexOf(singleticker) / rows) * columnwidth;
     readline.cursorTo(process.stdout,xposition, tickers.indexOf(singleticker) % rows);
     process.stdout.write(`\x1b[37m${quote.price.toFixed(2)}${randchars[Math.floor(Math.random() * 10)]}`);
-    count++;}}
+    count++;}
+}
