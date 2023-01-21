@@ -21,7 +21,8 @@ readline.cursorTo(process.stdout,0,40);
 
 console.log(" ");
 
-setInterval(grab, 5000); // increased from 500, as not to hammer whomever's heroku app.
+setInterval(grab, 5000); // increased from 500, as not to hammer whomever's (martin's?) 
+                         // heroku app.
 
 async function grab() {
   for (const singleticker of tickers) {
