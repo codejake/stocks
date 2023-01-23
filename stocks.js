@@ -15,11 +15,13 @@ function drawScreen() {
     process.stdout.write(`\x1b[33m${tickers[i]}${dashes}`);
   }};
 
+// Draw the initial screen.
 drawScreen();
 
+// Set cursor position.
 readline.cursorTo(process.stdout,0,40);
 
-console.log(" ");
+console.log(" "); // ?
 
 setInterval(grab, 5000); // increased from 500, as not to hammer whomever's (martin's?) 
                          // heroku app.
